@@ -1,40 +1,220 @@
 {
   "subscriptions": [
-    { "name": "Netflix", "domain": "netflix.com", "price": 129, "billingCycle": "monthly" },
-    { "name": "Disney+", "domain": "disneyplus.com", "price": 99, "billingCycle": "monthly" },
-    { "name": "Max (HBO)", "domain": "max.com", "price": 89, "billingCycle": "monthly" },
-    { "name": "Viaplay", "domain": "viaplay.dk", "price": 129, "billingCycle": "monthly" },
-    { "name": "TV 2 Play", "domain": "play.tv2.dk", "price": 149, "billingCycle": "monthly" },
-    { "name": "SkyShowtime", "domain": "skyshowtime.com", "price": 79, "billingCycle": "monthly" },
-    { "name": "Discovery+", "domain": "discoveryplus.com", "price": 79, "billingCycle": "monthly" },
-    { "name": "DAZN", "domain": "dazn.com", "price": 199, "billingCycle": "monthly" },
-    { "name": "Spotify", "domain": "spotify.com", "price": 109, "billingCycle": "monthly" },
-    { "name": "YouTube Premium", "domain": "youtube.com", "price": 89, "billingCycle": "monthly" },
-    { "name": "Apple Music", "domain": "music.apple.com", "price": 79, "billingCycle": "monthly" },
-    { "name": "Apple TV+", "domain": "tv.apple.com", "price": 89, "billingCycle": "monthly" },
-    { "name": "Apple One", "domain": "apple.com", "price": 179, "billingCycle": "monthly" },
-    { "name": "iCloud+", "domain": "icloud.com", "price": 25, "billingCycle": "monthly" },
-    { "name": "ChatGPT Plus", "domain": "chatgpt.com", "price": 169, "billingCycle": "monthly" },
-    { "name": "Claude Pro", "domain": "claude.ai", "price": 145, "billingCycle": "monthly" },
-    { "name": "Grok", "domain": "x.ai", "price": 145, "billingCycle": "monthly" },
-    { "name": "Amazon Prime", "domain": "amazon.de", "price": 449, "billingCycle": "yearly" },
-    { "name": "PlayStation Plus", "domain": "playstation.com", "price": 95, "billingCycle": "monthly" },
-    { "name": "Xbox Game Pass", "domain": "xbox.com", "price": 99, "billingCycle": "monthly" },
-    { "name": "Nintendo Switch Online", "domain": "nintendo.com", "price": 199, "billingCycle": "yearly" },
-    { "name": "Audible", "domain": "audible.com", "price": 129, "billingCycle": "monthly" },
-    { "name": "Storytel", "domain": "storytel.com", "price": 149, "billingCycle": "monthly" },
-    { "name": "Nextory", "domain": "nextory.dk", "price": 149, "billingCycle": "monthly" },
-    { "name": "Podimo", "domain": "podimo.com", "price": 79, "billingCycle": "monthly" },
-    { "name": "Dropbox", "domain": "dropbox.com", "price": 99, "billingCycle": "monthly" },
-    { "name": "Google One", "domain": "one.google.com", "price": 25, "billingCycle": "monthly" },
-    { "name": "Microsoft 365", "domain": "microsoft.com", "price": 699, "billingCycle": "yearly" },
-    { "name": "Adobe Creative Cloud", "domain": "adobe.com", "price": 599, "billingCycle": "monthly" },
-    { "name": "1Password", "domain": "1password.com", "price": 39, "billingCycle": "monthly" },
-    { "name": "NordVPN", "domain": "nordvpn.com", "price": 349, "billingCycle": "yearly" },
-    { "name": "LinkedIn Premium", "domain": "linkedin.com", "price": 349, "billingCycle": "monthly" },
-    { "name": "Duolingo Plus", "domain": "duolingo.com", "price": 349, "billingCycle": "yearly" },
-    { "name": "Headspace", "domain": "headspace.com", "price": 449, "billingCycle": "yearly" },
-    { "name": "Calm", "domain": "calm.com", "price": 449, "billingCycle": "yearly" },
-    { "name": "Wolt+", "domain": "wolt.com", "price": 49, "billingCycle": "monthly" }
+    {
+      "name": "Netflix",
+      "domain": "netflix.com",
+      "price": 129.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Disney+",
+      "domain": "disneyplus.com",
+      "price": 89.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Max (HBO)",
+      "domain": "max.com",
+      "price": 89.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Viaplay",
+      "domain": "viaplay.dk",
+      "price": 119.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "TV 2 Play",
+      "domain": "play.tv2.dk",
+      "price": 139.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "SkyShowtime",
+      "domain": "skyshowtime.com",
+      "price": 79.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Discovery+",
+      "domain": "discoveryplus.com",
+      "price": 79.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "DAZN",
+      "domain": "dazn.com",
+      "price": 149.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Spotify",
+      "domain": "spotify.com",
+      "price": 119.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "YouTube Premium",
+      "domain": "youtube.com",
+      "price": 119.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Apple Music",
+      "domain": "music.apple.com",
+      "price": 109.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Apple TV+",
+      "domain": "tv.apple.com",
+      "price": 89.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Apple One",
+      "domain": "apple.com",
+      "price": 169.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "iCloud+",
+      "domain": "icloud.com",
+      "price": 29.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "ChatGPT Plus",
+      "domain": "chatgpt.com",
+      "price": 139.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Claude Pro",
+      "domain": "claude.ai",
+      "price": 139.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Grok",
+      "domain": "x.ai",
+      "price": 209.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Amazon Prime",
+      "domain": "amazon.de",
+      "price": 49.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "PlayStation Plus",
+      "domain": "playstation.com",
+      "price": 79.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Xbox Game Pass",
+      "domain": "xbox.com",
+      "price": 109.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Nintendo Switch Online",
+      "domain": "nintendo.com",
+      "price": 29.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Audible",
+      "domain": "audible.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Storytel",
+      "domain": "storytel.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Nextory",
+      "domain": "nextory.dk",
+      "price": 99.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Podimo",
+      "domain": "podimo.com",
+      "price": 69.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Dropbox",
+      "domain": "dropbox.com",
+      "price": 79.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Google One",
+      "domain": "one.google.com",
+      "price": 19.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Microsoft 365",
+      "domain": "microsoft.com",
+      "price": 69.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Adobe Creative Cloud",
+      "domain": "adobe.com",
+      "price": 449.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "1Password",
+      "domain": "1password.com",
+      "price": 35.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "NordVPN",
+      "domain": "nordvpn.com",
+      "price": 89.0,
+      "billingCycle": "yearly"
+    },
+    {
+      "name": "LinkedIn Premium",
+      "domain": "linkedin.com",
+      "price": 299.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Duolingo Plus",
+      "domain": "duolingo.com",
+      "price": 89.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Headspace",
+      "domain": "headspace.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
+    },
+    {
+      "name": "Calm",
+      "domain": "calm.com",
+      "price": 99.0,
+      "billingCycle": "yearly"
+    },
+    {
+      "name": "Wolt+",
+      "domain": "wolt.com",
+      "price": 39.0,
+      "billingCycle": "monthly"
+    }
   ]
 }
