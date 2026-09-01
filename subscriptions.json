@@ -353,6 +353,12 @@
       "domain": "music.youtube.com",
       "price": 79.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Strava",
+      "domain": "strava.com",
+      "price": 499.0,
+      "billingCycle": "yearly"
     }
   ]
 }
