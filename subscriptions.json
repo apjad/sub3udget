@@ -431,6 +431,12 @@
       "domain": "x.ai",
       "price": 1.935,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Fitness World",
+      "domain": "fitnessworld.dk",
+      "price": 299.0,
+      "billingCycle": "monthly"
     }
   ]
 }
