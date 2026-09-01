@@ -383,6 +383,12 @@
       "domain": "teslafi.com",
       "price": 516.03,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Apple Developer Program",
+      "domain": "developer.apple.com",
+      "price": 799.0,
+      "billingCycle": "yearly"
     }
   ]
 }
