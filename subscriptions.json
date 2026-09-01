@@ -221,6 +221,12 @@
       "domain": "tesla.com",
       "price": 750.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "tesla premium connectivity",
+      "domain": "tesla.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
     }
   ]
 }
