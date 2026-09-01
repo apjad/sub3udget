@@ -35,7 +35,7 @@
   }
   .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
   .toolbar { display: flex; gap: 8px; max-width: 720px; margin: 0 auto 8px; padding: 0 20px; }
-  input[type=text], input[type=search], input[type=number], select {
+  input[type=text], input[type=search], input[type=number], select, textarea {
     font: inherit;
     padding: 10px 12px;
     border: 1px solid var(--border);
@@ -44,6 +44,8 @@
     color: var(--text);
     width: 100%;
   }
+  textarea { resize: vertical; min-height: 64px; font-size: 0.85rem; }
+  .field-hint { color: var(--muted); font-size: 0.78rem; margin: 4px 0 0; }
   .btn {
     font: inherit;
     font-weight: 600;
@@ -168,6 +170,28 @@ function cycleLabel(cycle) {
   return cycle === 'yearly' ? 'årligt' : 'månedligt';
 }
 
+function formatVariants(variants) {
+  if (!variants || !variants.length) return '';
+  return variants.map(v => `${v.label} | ${v.price} | ${v.billingCycle}`).join('\n');
+}
+
+// Parses the "Navn | Pris | monthly/yearly" textarea format. Silently skips malformed lines —
+// the user sees the result immediately in the textarea and can fix it before saving.
+function parseVariants(text) {
+  return text.split('\n')
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => {
+      const parts = line.split('|').map(p => p.trim());
+      if (parts.length !== 3) return null;
+      const [label, priceStr, cycle] = parts;
+      const price = parseFloat(priceStr);
+      if (!label || isNaN(price) || !['monthly', 'yearly'].includes(cycle)) return null;
+      return { label, price, billingCycle: cycle };
+    })
+    .filter(Boolean);
+}
+
 async function load() {
   setStatus('Henter…');
   const res = await fetch('/api/subscriptions');
@@ -204,7 +228,7 @@ function render() {
       ${e.domain ? `<img class="logo" src="${logoUrl(e.domain)}" alt="">` : '<div class="logo"></div>'}
       <div>
         <div class="entry-title">${escapeHtml(e.name)}</div>
-        <div class="entry-sub">${e.price} kr. · ${cycleLabel(e.billingCycle)}</div>
+        <div class="entry-sub">${e.variants && e.variants.length ? `Fra ${Math.min(...e.variants.map(v => v.price))} kr. · ${e.variants.length} typer` : `${e.price} kr. · ${cycleLabel(e.billingCycle)}`}</div>
       </div>
       <div class="chevron">▶</div>
     `;
@@ -217,7 +241,7 @@ function render() {
       <input type="text" id="name-${i}" value="${escapeAttr(e.name)}">
       <div class="field-label">Domæne (til logo)</div>
       <input type="text" id="domain-${i}" value="${escapeAttr(e.domain || '')}">
-      <div class="field-label">Pris og betaling</div>
+      <div class="field-label">Standardpris og betaling</div>
       <div class="price-row">
         <input type="number" id="price-${i}" value="${e.price}">
         <select id="cycle-${i}">
@@ -225,6 +249,9 @@ function render() {
           <option value="yearly" ${e.billingCycle === 'yearly' ? 'selected' : ''}>Årligt</option>
         </select>
       </div>
+      <div class="field-label">Typer (valgfrit — fx Basic/Standard/Premium)</div>
+      <textarea id="variants-${i}" rows="3" placeholder="Navn | Pris | monthly/yearly&#10;Basic | 79 | monthly&#10;Standard | 119 | monthly">${formatVariants(e.variants)}</textarea>
+      <div class="field-hint">Én type pr. linje: Navn | Pris | monthly eller yearly. Lad stå tomt hvis der kun er én type.</div>
       <div class="entry-actions">
         <button class="btn btn-secondary" id="suggestBtn-${i}" onclick="suggestPrice(${i})">✨ Opdater pris med AI</button>
       </div>
@@ -280,6 +307,7 @@ async function saveEntry(i, originalName) {
     domain: document.getElementById(`domain-${i}`).value.trim(),
     price: parseFloat(document.getElementById(`price-${i}`).value) || 0,
     billingCycle: document.getElementById(`cycle-${i}`).value,
+    variants: parseVariants(document.getElementById(`variants-${i}`).value),
   };
   const data = await mutate('/api/subscriptions/' + encodeURIComponent(originalName), 'PUT', updated, 'Gemmer…');
   if (!data) return;
@@ -340,12 +368,19 @@ async function suggestPrice(i) {
     }
     document.getElementById(priceField).value = data.price;
     document.getElementById(cycleField).value = data.billingCycle;
-    let statusMsg = 'Pris opdateret — tjek den før du gemmer.';
+    const filledParts = ['Pris'];
     if (data.domain && !domain) {
       document.getElementById(domainField).value = data.domain;
-      statusMsg = 'Pris og logo opdateret — tjek dem før du gemmer.';
+      filledParts.push('logo');
     }
-    setStatus(statusMsg, 'ok');
+    if (i !== null && data.variants && data.variants.length) {
+      const variantsField = document.getElementById(`variants-${i}`);
+      if (!variantsField.value.trim()) {
+        variantsField.value = formatVariants(data.variants);
+        filledParts.push('typer');
+      }
+    }
+    setStatus(filledParts.join(' og ') + ' opdateret — tjek dem før du gemmer.', 'ok');
   } catch (e) {
     setStatus('Kunne ikke kontakte AI: ' + e, 'err');
   } finally {

@@ -52,6 +52,24 @@ AUTH_USERS = load_credentials()
 INDEX_HTML_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html")
 
 
+def clean_variant(variant, name):
+    if not isinstance(variant, dict):
+        raise ValueError(f'"{name}" har en ugyldig type')
+    label = str(variant.get("label", "")).strip()
+    if not label:
+        raise ValueError(f'"{name}" har en type uden navn')
+    try:
+        price = float(variant.get("price", 0))
+    except (TypeError, ValueError):
+        raise ValueError(f'"{name}" — typen "{label}" har en ugyldig pris')
+    if price < 0:
+        raise ValueError(f'"{name}" — typen "{label}" kan ikke have en negativ pris')
+    cycle = str(variant.get("billingCycle", "")).strip()
+    if cycle not in VALID_CYCLES:
+        raise ValueError(f'"{name}" — typen "{label}" skal have "monthly" eller "yearly" som betaling')
+    return {"label": label, "price": price, "billingCycle": cycle}
+
+
 def clean_entry(entry, index_label):
     if not isinstance(entry, dict):
         raise ValueError(f"{index_label} er ikke et gyldigt objekt")
@@ -68,7 +86,13 @@ def clean_entry(entry, index_label):
     cycle = str(entry.get("billingCycle", "")).strip()
     if cycle not in VALID_CYCLES:
         raise ValueError(f'"{name}" skal have "monthly" eller "yearly" som betaling')
-    return {"name": name, "domain": domain, "price": price, "billingCycle": cycle}
+    cleaned = {"name": name, "domain": domain, "price": price, "billingCycle": cycle}
+    variants = entry.get("variants")
+    if variants:
+        if not isinstance(variants, list):
+            raise ValueError(f'"{name}" har et ugyldigt sæt af typer')
+        cleaned["variants"] = [clean_variant(v, name) for v in variants]
+    return cleaned
 
 
 def load_catalog_unlocked():
@@ -226,13 +250,17 @@ class Handler(BaseHTTPRequestHandler):
     def _suggest_price(self, name, domain):
         target = f"{name} ({domain})" if domain else name
         prompt = (
-            f"Look up the current standard individual-plan subscription price for \"{target}\" "
-            f"in Danish kroner (DKK), as sold to Danish consumers. Use their official Danish "
-            f"pricing page if one exists, otherwise convert from EUR/USD at the current rate. "
-            f"Use their most common single-person plan. Report the price and whether it's "
-            f"billed monthly or yearly (whichever is the standard/default billing option). Also "
-            f"report the bare root domain of their official website (e.g. \"netflix.com\", no "
-            f"\"https://\" or \"www.\"), used only to fetch a favicon — not for anything else."
+            f"Look up the current standard subscription pricing for \"{target}\" in Danish "
+            f"kroner (DKK), as sold to Danish consumers. Use their official Danish pricing page "
+            f"if one exists, otherwise convert from EUR/USD at the current rate. Report the "
+            f"price and billing cycle (monthly or yearly, whichever is their standard/default "
+            f"billing option) for their most common single-person plan. Also report the bare "
+            f"root domain of their official website (e.g. \"netflix.com\", no \"https://\" or "
+            f"\"www.\"), used only to fetch a favicon. Separately, if — and only if — this "
+            f"service actually sells more than one plan tier (e.g. Basic/Standard/Premium, or "
+            f"Individual/Duo/Family), list each tier as a variant with its own label, price and "
+            f"billing cycle. If it only has one plan, return an empty variants list — do not "
+            f"invent tiers that don't exist."
         )
         schema = json.dumps({
             "type": "object",
@@ -240,8 +268,20 @@ class Handler(BaseHTTPRequestHandler):
                 "price": {"type": "number"},
                 "billingCycle": {"type": "string", "enum": ["monthly", "yearly"]},
                 "domain": {"type": "string"},
+                "variants": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {"type": "string"},
+                            "price": {"type": "number"},
+                            "billingCycle": {"type": "string", "enum": ["monthly", "yearly"]},
+                        },
+                        "required": ["label", "price", "billingCycle"],
+                    },
+                },
             },
-            "required": ["price", "billingCycle", "domain"],
+            "required": ["price", "billingCycle", "domain", "variants"],
         })
         try:
             result = subprocess.run(
@@ -256,11 +296,16 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(result.stdout)["structuredOutput"]
         except (json.JSONDecodeError, KeyError, TypeError):
             return {"ok": False, "error": "Kunne ikke aflæse svar fra AI"}
+        variants = [
+            v for v in data.get("variants", [])
+            if isinstance(v, dict) and v.get("label") and v.get("billingCycle") in VALID_CYCLES
+        ]
         return {
             "ok": True,
             "price": data["price"],
             "billingCycle": data["billingCycle"],
             "domain": data.get("domain", "").strip(),
+            "variants": variants,
         }
 
     def _run_sync(self):
