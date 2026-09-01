@@ -233,6 +233,12 @@
       "domain": "x.com",
       "price": 77.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Clever",
+      "domain": "clever.dk",
+      "price": 899.0,
+      "billingCycle": "monthly"
     }
   ]
 }
