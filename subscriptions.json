@@ -257,6 +257,12 @@
       "domain": "eb.dk",
       "price": 99.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Politiken",
+      "domain": "politiken.dk",
+      "price": 339.0,
+      "billingCycle": "monthly"
     }
   ]
 }
