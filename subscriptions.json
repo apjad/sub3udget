@@ -323,6 +323,12 @@
       "domain": "gemini.google.com",
       "price": 149.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Home Assistant Cloud / Nabu Casa",
+      "domain": "nabucasa.com",
+      "price": 565.0,
+      "billingCycle": "yearly"
     }
   ]
 }
