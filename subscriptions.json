@@ -215,6 +215,12 @@
       "domain": "wolt.com",
       "price": 39.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "FSD Tesla",
+      "domain": "tesla.com",
+      "price": 750.0,
+      "billingCycle": "monthly"
     }
   ]
 }
