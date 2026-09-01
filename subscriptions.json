@@ -341,6 +341,12 @@
       "domain": "arlo.com",
       "price": 99.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Snapchat+",
+      "domain": "snapchat.com",
+      "price": 35.0,
+      "billingCycle": "monthly"
     }
   ]
 }
