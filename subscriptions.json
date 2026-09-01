@@ -227,6 +227,12 @@
       "domain": "tesla.com",
       "price": 99.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "X premium",
+      "domain": "x.com",
+      "price": 77.0,
+      "billingCycle": "monthly"
     }
   ]
 }
