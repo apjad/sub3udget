@@ -293,6 +293,12 @@
       "domain": "shell.com",
       "price": 129.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Wash World",
+      "domain": "washworld.dk",
+      "price": 169.0,
+      "billingCycle": "monthly"
     }
   ]
 }
