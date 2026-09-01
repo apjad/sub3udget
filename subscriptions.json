@@ -371,6 +371,12 @@
       "domain": "wemod.com",
       "price": 52.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Teslemetry",
+      "domain": "teslemetry.com",
+      "price": 193.0,
+      "billingCycle": "yearly"
     }
   ]
 }
