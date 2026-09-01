@@ -359,6 +359,12 @@
       "domain": "strava.com",
       "price": 499.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "MyFitnessPal",
+      "domain": "myfitnesspal.com",
+      "price": 499.0,
+      "billingCycle": "yearly"
     }
   ]
 }
