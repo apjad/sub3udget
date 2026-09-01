@@ -239,6 +239,12 @@
       "domain": "clever.dk",
       "price": 899.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Prime Video",
+      "domain": "primevideo.com",
+      "price": 69.0,
+      "billingCycle": "monthly"
     }
   ]
 }
