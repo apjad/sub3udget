@@ -347,6 +347,12 @@
       "domain": "snapchat.com",
       "price": 35.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "YouTube Music",
+      "domain": "music.youtube.com",
+      "price": 79.0,
+      "billingCycle": "monthly"
     }
   ]
 }
