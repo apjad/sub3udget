@@ -251,6 +251,12 @@
       "domain": "bookbeat.com",
       "price": 99.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Ekstra Bladet+",
+      "domain": "eb.dk",
+      "price": 99.0,
+      "billingCycle": "monthly"
     }
   ]
 }
