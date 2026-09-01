@@ -377,6 +377,12 @@
       "domain": "teslemetry.com",
       "price": 193.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Teslafi",
+      "domain": "teslafi.com",
+      "price": 516.03,
+      "billingCycle": "yearly"
     }
   ]
 }
