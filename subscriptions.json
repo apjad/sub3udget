@@ -305,6 +305,12 @@
       "domain": "circlek.dk",
       "price": 199.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "OK bilvask",
+      "domain": "ok.dk",
+      "price": 149.0,
+      "billingCycle": "monthly"
     }
   ]
 }
