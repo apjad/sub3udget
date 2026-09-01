@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sub3udget katalog</title>
+<style>
+  :root {
+    --bg: #f4f2ee;
+    --card: #ffffff;
+    --border: #e2ddd3;
+    --text: #2b2620;
+    --muted: #8a8177;
+    --accent: #2e7dd6;
+    --accent2: #5a8f4f;
+    --danger: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 100px;
+  }
+  header { padding: 20px 20px 12px; max-width: 720px; margin: 0 auto; }
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 0 4px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
+  .toolbar { display: flex; gap: 8px; max-width: 720px; margin: 0 auto 8px; padding: 0 20px; }
+  input[type=text], input[type=search], input[type=number], select {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    width: 100%;
+  }
+  .btn {
+    font: inherit;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+  .btn-danger { background: transparent; color: var(--danger); border: 1px solid transparent; }
+  .btn-danger:hover { background: #fbeae8; }
+  .btn:active { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.6; }
+
+  main { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+  .entry {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .entry-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+  }
+  .logo {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: var(--bg);
+    flex-shrink: 0;
+  }
+  .entry-title { font-weight: 700; font-size: 1.05rem; }
+  .entry-sub { color: var(--muted); font-size: 0.85rem; margin-top: 2px; }
+  .chevron { color: var(--muted); transition: transform 0.15s; font-size: 0.85rem; margin-left: auto; }
+  .entry.open .chevron { transform: rotate(90deg); }
+
+  .entry-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .entry.open .entry-body { display: block; }
+  .field-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); margin: 12px 0 6px; }
+  .price-row { display: flex; gap: 8px; }
+  .price-row input { flex: 2; }
+  .price-row select { flex: 1; }
+
+  .entry-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+  .add-card { background: var(--card); border: 1.5px dashed var(--border); border-radius: 14px; padding: 16px; margin: 16px 0 24px; }
+  .add-card h2 { font-size: 1rem; margin: 0 0 10px; }
+  .add-card input, .add-card select { margin-bottom: 8px; }
+
+  .footer-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--card); border-top: 1px solid var(--border);
+    padding: 12px 20px; display: flex; justify-content: center; gap: 10px; align-items: center;
+  }
+  #status { font-size: 0.85rem; color: var(--muted); }
+  #status.ok { color: var(--accent2); }
+  #status.err { color: var(--danger); }
+  .empty { color: var(--muted); text-align: center; padding: 40px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sub3udget katalog</h1>
+  <div class="sub" id="countSub">Henter…</div>
+</header>
+
+<div class="toolbar">
+  <input type="search" id="search" placeholder="Søg efter abonnement…">
+</div>
+
+<main>
+  <div id="list"></div>
+
+  <div class="add-card">
+    <h2>+ Tilføj nyt abonnement</h2>
+    <input type="text" id="newName" placeholder="Navn (fx Netflix)">
+    <input type="text" id="newDomain" placeholder="Domæne til logo (fx netflix.com)">
+    <div class="price-row">
+      <input type="number" id="newPrice" placeholder="Pris (kr.)">
+      <select id="newCycle">
+        <option value="monthly">Månedligt</option>
+        <option value="yearly">Årligt</option>
+      </select>
+    </div>
+    <div class="entry-actions">
+      <button class="btn btn-secondary" id="newSuggestBtn" onclick="suggestPrice(null)">✨ Slå pris op med AI</button>
+      <button class="btn btn-primary" onclick="addEntry()">Tilføj</button>
+    </div>
+  </div>
+</main>
+
+<div class="footer-bar">
+  <span id="status"></span>
+  <button class="btn btn-secondary" onclick="load()">Genindlæs</button>
+  <button class="btn btn-primary" onclick="syncToGitHub()">Synkroniser igen</button>
+</div>
+
+<script>
+let entries = [];
+let openIndex = null;
+
+function setStatus(text, cls) {
+  const el = document.getElementById('status');
+  el.textContent = text;
+  el.className = cls || '';
+}
+
+function logoUrl(domain) {
+  return domain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64` : '';
+}
+
+function cycleLabel(cycle) {
+  return cycle === 'yearly' ? 'årligt' : 'månedligt';
+}
+
+async function load() {
+  setStatus('Henter…');
+  const res = await fetch('/api/subscriptions');
+  const data = await res.json();
+  entries = data.subscriptions;
+  render();
+  setStatus('');
+}
+
+function render() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+  const filtered = entries
+    .map((e, i) => ({ e, i }))
+    .filter(({ e }) => !q || e.name.toLowerCase().includes(q))
+    .sort((a, b) => a.e.name.localeCompare(b.e.name, 'da'));
+
+  document.getElementById('countSub').textContent =
+    entries.length + ' abonnementer i kataloget' + (q ? ' · ' + filtered.length + ' matcher' : '');
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">Ingen abonnementer fundet.</div>';
+    return;
+  }
+
+  for (const { e, i } of filtered) {
+    const card = document.createElement('div');
+    card.className = 'entry' + (openIndex === i ? ' open' : '');
+
+    const head = document.createElement('div');
+    head.className = 'entry-head';
+    head.innerHTML = `
+      ${e.domain ? `<img class="logo" src="${logoUrl(e.domain)}" alt="">` : '<div class="logo"></div>'}
+      <div>
+        <div class="entry-title">${escapeHtml(e.name)}</div>
+        <div class="entry-sub">${e.price} kr. · ${cycleLabel(e.billingCycle)}</div>
+      </div>
+      <div class="chevron">▶</div>
+    `;
+    head.onclick = () => { openIndex = openIndex === i ? null : i; render(); };
+
+    const body = document.createElement('div');
+    body.className = 'entry-body';
+    body.innerHTML = `
+      <div class="field-label">Navn</div>
+      <input type="text" id="name-${i}" value="${escapeAttr(e.name)}">
+      <div class="field-label">Domæne (til logo)</div>
+      <input type="text" id="domain-${i}" value="${escapeAttr(e.domain || '')}">
+      <div class="field-label">Pris og betaling</div>
+      <div class="price-row">
+        <input type="number" id="price-${i}" value="${e.price}">
+        <select id="cycle-${i}">
+          <option value="monthly" ${e.billingCycle === 'monthly' ? 'selected' : ''}>Månedligt</option>
+          <option value="yearly" ${e.billingCycle === 'yearly' ? 'selected' : ''}>Årligt</option>
+        </select>
+      </div>
+      <div class="entry-actions">
+        <button class="btn btn-secondary" id="suggestBtn-${i}" onclick="suggestPrice(${i})">✨ Opdater pris med AI</button>
+      </div>
+      <div class="entry-actions">
+        <button class="btn btn-danger" onclick='deleteEntry(${i}, ${JSON.stringify(e.name)})'>Slet</button>
+        <button class="btn btn-primary" onclick='saveEntry(${i}, ${JSON.stringify(e.name)})'>Gem ændring</button>
+      </div>
+    `;
+
+    card.appendChild(head);
+    card.appendChild(body);
+    list.appendChild(card);
+  }
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+}
+function escapeAttr(s) {
+  return escapeHtml(s).replace(/"/g, '&quot;');
+}
+
+async function mutate(url, method, body, busyMsg) {
+  setStatus(busyMsg);
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: body ? { 'Content-Type': 'application/json' } : undefined,
+      body: body ? JSON.stringify(body) : undefined
+    });
+    const data = await res.json();
+    if (!data.ok) {
+      setStatus(data.error || 'Noget gik galt', 'err');
+      return null;
+    }
+    entries = data.subscriptions;
+    return data;
+  } catch (e) {
+    setStatus('Kunne ikke kontakte serveren: ' + e, 'err');
+    return null;
+  }
+}
+
+function syncMessage(localMsg, sync) {
+  if (!sync) return localMsg;
+  if (!sync.ok) return localMsg + ' Kunne ikke synkronisere til GitHub: ' + (sync.log || sync.step) + ' — prøv "Synkroniser igen".';
+  return localMsg + (sync.changed ? ' Sendt til GitHub — live om et øjeblik.' : '');
+}
+
+async function saveEntry(i, originalName) {
+  const updated = {
+    name: document.getElementById(`name-${i}`).value.trim(),
+    domain: document.getElementById(`domain-${i}`).value.trim(),
+    price: parseFloat(document.getElementById(`price-${i}`).value) || 0,
+    billingCycle: document.getElementById(`cycle-${i}`).value,
+  };
+  const data = await mutate('/api/subscriptions/' + encodeURIComponent(originalName), 'PUT', updated, 'Gemmer…');
+  if (!data) return;
+  setStatus(syncMessage('Gemt.', data.sync), data.sync && !data.sync.ok ? 'err' : 'ok');
+  openIndex = null;
+  render();
+}
+
+async function deleteEntry(i, name) {
+  if (!confirm(`Slet "${name}"?`)) return;
+  const data = await mutate('/api/subscriptions/' + encodeURIComponent(name), 'DELETE', null, 'Sletter…');
+  if (!data) return;
+  setStatus(syncMessage('Slettet.', data.sync), data.sync && !data.sync.ok ? 'err' : 'ok');
+  openIndex = null;
+  render();
+}
+
+async function addEntry() {
+  const name = document.getElementById('newName').value.trim();
+  const domain = document.getElementById('newDomain').value.trim();
+  const price = parseFloat(document.getElementById('newPrice').value) || 0;
+  const billingCycle = document.getElementById('newCycle').value;
+  if (!name) { setStatus('Abonnementet skal have et navn', 'err'); return; }
+  if (price <= 0) { setStatus('Indsæt en pris', 'err'); return; }
+  const data = await mutate('/api/subscriptions', 'POST', { name, domain, price, billingCycle }, 'Tilføjer…');
+  if (!data) return;
+  document.getElementById('newName').value = '';
+  document.getElementById('newDomain').value = '';
+  document.getElementById('newPrice').value = '';
+  setStatus(syncMessage('Tilføjet.', data.sync), data.sync && !data.sync.ok ? 'err' : 'ok');
+  render();
+}
+
+// i === null means the "+ Tilføj nyt abonnement" form; otherwise the row index being edited.
+async function suggestPrice(i) {
+  const nameField = i === null ? 'newName' : `name-${i}`;
+  const domainField = i === null ? 'newDomain' : `domain-${i}`;
+  const priceField = i === null ? 'newPrice' : `price-${i}`;
+  const cycleField = i === null ? 'newCycle' : `cycle-${i}`;
+  const btnId = i === null ? 'newSuggestBtn' : `suggestBtn-${i}`;
+  const name = document.getElementById(nameField).value.trim();
+  if (!name) { setStatus('Skriv et navn først', 'err'); return; }
+  const domain = document.getElementById(domainField).value.trim();
+  const btn = document.getElementById(btnId);
+  btn.disabled = true;
+  btn.textContent = 'Slår op…';
+  setStatus('Slår aktuel pris op for "' + name + '"…');
+  try {
+    const res = await fetch('/api/suggest-price', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, domain })
+    });
+    const data = await res.json();
+    if (!data.ok) {
+      setStatus('Fejl: ' + data.error, 'err');
+      return;
+    }
+    document.getElementById(priceField).value = data.price;
+    document.getElementById(cycleField).value = data.billingCycle;
+    setStatus('Pris opdateret — tjek den før du gemmer.', 'ok');
+  } catch (e) {
+    setStatus('Kunne ikke kontakte AI: ' + e, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = i === null ? '✨ Slå pris op med AI' : '✨ Opdater pris med AI';
+  }
+}
+
+async function syncToGitHub() {
+  setStatus('Synkroniserer…');
+  const res = await fetch('/api/sync', { method: 'POST' });
+  const data = await res.json();
+  if (!data.ok) {
+    setStatus('Fejl: ' + (data.log || data.step), 'err');
+    return;
+  }
+  setStatus(data.log, 'ok');
+}
+
+document.getElementById('search').addEventListener('input', render);
+load();
+
+setInterval(() => {
+  if (openIndex === null) load();
+}, 8000);
+</script>
+
+</body>
+</html>
