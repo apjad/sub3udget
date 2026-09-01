@@ -317,6 +317,12 @@
       "domain": "apple.com",
       "price": 799.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Gemini-abonnement",
+      "domain": "gemini.google.com",
+      "price": 149.0,
+      "billingCycle": "monthly"
     }
   ]
 }
