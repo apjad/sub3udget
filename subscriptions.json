@@ -281,6 +281,12 @@
       "domain": "berlingske.dk",
       "price": 179.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Lotto",
+      "domain": "danskespil.dk",
+      "price": 399.0,
+      "billingCycle": "monthly"
     }
   ]
 }
