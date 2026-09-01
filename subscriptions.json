@@ -275,6 +275,12 @@
       "domain": "mofibo.com",
       "price": 129.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Berlingske",
+      "domain": "berlingske.dk",
+      "price": 179.0,
+      "billingCycle": "monthly"
     }
   ]
 }
