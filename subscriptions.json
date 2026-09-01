@@ -395,6 +395,12 @@
       "domain": "abetterrouteplanner.com",
       "price": 322.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "CUPRA Connect Navi",
+      "domain": "cupra.com",
+      "price": 517.0,
+      "billingCycle": "yearly"
     }
   ]
 }
