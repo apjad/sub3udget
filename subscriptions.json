@@ -263,6 +263,12 @@
       "domain": "politiken.dk",
       "price": 339.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Jyllands-Posten",
+      "domain": "jyllands-posten.dk",
+      "price": 199.0,
+      "billingCycle": "monthly"
     }
   ]
 }
