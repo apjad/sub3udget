@@ -239,6 +239,12 @@
       "domain": "primevideo.com",
       "price": 69.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Falck vejhjælp",
+      "domain": "falck.dk",
+      "price": 99.0,
+      "billingCycle": "monthly"
     }
   ]
 }
