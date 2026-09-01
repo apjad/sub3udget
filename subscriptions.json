@@ -401,6 +401,12 @@
       "domain": "cupra.com",
       "price": 517.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Porsche Car Security",
+      "domain": "porsche.com",
+      "price": 2290.0,
+      "billingCycle": "yearly"
     }
   ]
 }
