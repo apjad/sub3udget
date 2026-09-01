@@ -425,6 +425,12 @@
       "domain": "tronity.io",
       "price": 79.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "SuperGrok",
+      "domain": "x.ai",
+      "price": 1.935,
+      "billingCycle": "yearly"
     }
   ]
 }
