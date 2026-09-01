@@ -269,6 +269,12 @@
       "domain": "jyllands-posten.dk",
       "price": 199.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Mofibo",
+      "domain": "mofibo.com",
+      "price": 129.0,
+      "billingCycle": "monthly"
     }
   ]
 }
