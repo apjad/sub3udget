@@ -329,6 +329,12 @@
       "domain": "nabucasa.com",
       "price": 565.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Plex Pass",
+      "domain": "plex.tv",
+      "price": 39.0,
+      "billingCycle": "monthly"
     }
   ]
 }
