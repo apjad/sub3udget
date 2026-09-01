@@ -335,6 +335,12 @@
       "domain": "plex.tv",
       "price": 39.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Arlo Secure",
+      "domain": "arlo.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
     }
   ]
 }
