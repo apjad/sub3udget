@@ -407,6 +407,12 @@
       "domain": "porsche.com",
       "price": 2290.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "tiktok",
+      "domain": "tiktok.com",
+      "price": 99.0,
+      "billingCycle": "monthly"
     }
   ]
 }
