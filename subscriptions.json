@@ -365,6 +365,12 @@
       "domain": "myfitnesspal.com",
       "price": 499.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Wemod",
+      "domain": "wemod.com",
+      "price": 52.0,
+      "billingCycle": "monthly"
     }
   ]
 }
