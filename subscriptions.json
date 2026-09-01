@@ -104,8 +104,8 @@
     },
     {
       "name": "Amazon Prime",
-      "domain": "amazon.de",
-      "price": 49.0,
+      "domain": "amazon.dk",
+      "price": 69.0,
       "billingCycle": "monthly"
     },
     {
