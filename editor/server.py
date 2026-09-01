@@ -230,15 +230,18 @@ class Handler(BaseHTTPRequestHandler):
             f"in Danish kroner (DKK), as sold to Danish consumers. Use their official Danish "
             f"pricing page if one exists, otherwise convert from EUR/USD at the current rate. "
             f"Use their most common single-person plan. Report the price and whether it's "
-            f"billed monthly or yearly (whichever is the standard/default billing option)."
+            f"billed monthly or yearly (whichever is the standard/default billing option). Also "
+            f"report the bare root domain of their official website (e.g. \"netflix.com\", no "
+            f"\"https://\" or \"www.\"), used only to fetch a favicon — not for anything else."
         )
         schema = json.dumps({
             "type": "object",
             "properties": {
                 "price": {"type": "number"},
                 "billingCycle": {"type": "string", "enum": ["monthly", "yearly"]},
+                "domain": {"type": "string"},
             },
-            "required": ["price", "billingCycle"],
+            "required": ["price", "billingCycle", "domain"],
         })
         try:
             result = subprocess.run(
@@ -253,7 +256,12 @@ class Handler(BaseHTTPRequestHandler):
             data = json.loads(result.stdout)["structuredOutput"]
         except (json.JSONDecodeError, KeyError, TypeError):
             return {"ok": False, "error": "Kunne ikke aflæse svar fra AI"}
-        return {"ok": True, "price": data["price"], "billingCycle": data["billingCycle"]}
+        return {
+            "ok": True,
+            "price": data["price"],
+            "billingCycle": data["billingCycle"],
+            "domain": data.get("domain", "").strip(),
+        }
 
     def _run_sync(self):
         def run(*args):

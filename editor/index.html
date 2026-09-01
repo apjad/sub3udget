@@ -340,7 +340,12 @@ async function suggestPrice(i) {
     }
     document.getElementById(priceField).value = data.price;
     document.getElementById(cycleField).value = data.billingCycle;
-    setStatus('Pris opdateret — tjek den før du gemmer.', 'ok');
+    let statusMsg = 'Pris opdateret — tjek den før du gemmer.';
+    if (data.domain && !domain) {
+      document.getElementById(domainField).value = data.domain;
+      statusMsg = 'Pris og logo opdateret — tjek dem før du gemmer.';
+    }
+    setStatus(statusMsg, 'ok');
   } catch (e) {
     setStatus('Kunne ikke kontakte AI: ' + e, 'err');
   } finally {
