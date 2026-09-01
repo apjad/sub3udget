@@ -103,12 +103,6 @@
       "billingCycle": "monthly"
     },
     {
-      "name": "Amazon Prime",
-      "domain": "amazon.dk",
-      "price": 69.0,
-      "billingCycle": "monthly"
-    },
-    {
       "name": "PlayStation Plus",
       "domain": "playstation.com",
       "price": 79.0,
