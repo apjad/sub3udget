@@ -437,6 +437,12 @@
       "domain": "fitnessworld.dk",
       "price": 299.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Aalborg Karate Skole",
+      "domain": "aalborgkarateskole.dk",
+      "price": 1395.0,
+      "billingCycle": "yearly"
     }
   ]
 }
