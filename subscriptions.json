@@ -419,6 +419,12 @@
       "domain": "ford.dk",
       "price": 2100.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "TRONITY Premium",
+      "domain": "tronity.io",
+      "price": 79.0,
+      "billingCycle": "monthly"
     }
   ]
 }
