@@ -311,6 +311,12 @@
       "domain": "ok.dk",
       "price": 149.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Final Cut Pro-abonnementer",
+      "domain": "apple.com",
+      "price": 799.0,
+      "billingCycle": "yearly"
     }
   ]
 }
