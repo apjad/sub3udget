@@ -287,6 +287,12 @@
       "domain": "danskespil.dk",
       "price": 399.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Shell Bilvask",
+      "domain": "shell.com",
+      "price": 129.0,
+      "billingCycle": "monthly"
     }
   ]
 }
