@@ -299,6 +299,12 @@
       "domain": "washworld.dk",
       "price": 169.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Circle K bilvask",
+      "domain": "circlek.dk",
+      "price": 199.0,
+      "billingCycle": "monthly"
     }
   ]
 }
