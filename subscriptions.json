@@ -217,7 +217,7 @@
       "billingCycle": "monthly"
     },
     {
-      "name": "FSD Tesla",
+      "name": "Tesla FSD",
       "domain": "tesla.com",
       "price": 750.0,
       "billingCycle": "monthly"
