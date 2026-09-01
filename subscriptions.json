@@ -389,6 +389,12 @@
       "domain": "developer.apple.com",
       "price": 799.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "ABRP Premium",
+      "domain": "abetterrouteplanner.com",
+      "price": 322.0,
+      "billingCycle": "yearly"
     }
   ]
 }
