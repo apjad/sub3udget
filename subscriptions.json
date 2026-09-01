@@ -413,6 +413,12 @@
       "domain": "tiktok.com",
       "price": 99.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Ford BlueCruise",
+      "domain": "ford.dk",
+      "price": 2100.0,
+      "billingCycle": "monthly"
     }
   ]
 }
