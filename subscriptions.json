@@ -443,6 +443,12 @@
       "domain": "aalborgkarateskole.dk",
       "price": 1395.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Zoom",
+      "domain": "zoom.com",
+      "price": 135.0,
+      "billingCycle": "monthly"
     }
   ]
 }
