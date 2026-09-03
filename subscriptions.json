@@ -334,7 +334,24 @@
       "name": "Google One",
       "domain": "one.google.com",
       "price": 19.0,
-      "billingCycle": "monthly"
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Basic",
+          "price": 19.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Standard",
+          "price": 29.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Premium",
+          "price": 99.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Microsoft 365",
