@@ -3,8 +3,25 @@
     {
       "name": "Netflix",
       "domain": "netflix.com",
-      "price": 129.0,
-      "billingCycle": "monthly"
+      "price": 69.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Standard with ads",
+          "price": 69.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Standard",
+          "price": 119.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Premium",
+          "price": 149.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Disney+",
