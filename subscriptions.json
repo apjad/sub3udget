@@ -149,7 +149,24 @@
       "name": "Apple Music",
       "domain": "music.apple.com",
       "price": 109.0,
-      "billingCycle": "monthly"
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 109.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Student",
+          "price": 59.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Family",
+          "price": 169.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Apple TV+",
