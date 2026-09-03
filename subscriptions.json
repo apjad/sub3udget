@@ -96,8 +96,20 @@
     {
       "name": "YouTube Premium",
       "domain": "youtube.com",
-      "price": 119.0,
-      "billingCycle": "monthly"
+      "price": 99.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 99.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Family",
+          "price": 149.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Apple Music",
