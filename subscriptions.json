@@ -200,8 +200,35 @@
     {
       "name": "iCloud+",
       "domain": "icloud.com",
-      "price": 89.0,
-      "billingCycle": "monthly"
+      "price": 12.95,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "50 GB",
+          "price": 12.95,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "200 GB",
+          "price": 38.95,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "2 TB",
+          "price": 129.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "6 TB",
+          "price": 389.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "12 TB",
+          "price": 779.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "ChatGPT Plus",
