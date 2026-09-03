@@ -172,17 +172,17 @@ function cycleLabel(cycle) {
 
 function formatVariants(variants) {
   if (!variants || !variants.length) return '';
-  return variants.map(v => `${v.label} | ${v.price} | ${v.billingCycle}`).join('\n');
+  return variants.map(v => `${v.label}, ${v.price}, ${v.billingCycle}`).join('\n');
 }
 
-// Parses the "Navn | Pris | monthly/yearly" textarea format. Silently skips malformed lines —
+// Parses the "Navn, Pris, monthly/yearly" textarea format. Silently skips malformed lines —
 // the user sees the result immediately in the textarea and can fix it before saving.
 function parseVariants(text) {
   return text.split('\n')
     .map(line => line.trim())
     .filter(Boolean)
     .map(line => {
-      const parts = line.split('|').map(p => p.trim());
+      const parts = line.split(',').map(p => p.trim());
       if (parts.length !== 3) return null;
       const [label, priceStr, cycle] = parts;
       const price = parseFloat(priceStr);
@@ -250,8 +250,8 @@ function render() {
         </select>
       </div>
       <div class="field-label">Typer (valgfrit — fx Basic/Standard/Premium)</div>
-      <textarea id="variants-${i}" rows="3" placeholder="Navn | Pris | monthly/yearly&#10;Basic | 79 | monthly&#10;Standard | 119 | monthly">${formatVariants(e.variants)}</textarea>
-      <div class="field-hint">Én type pr. linje: Navn | Pris | monthly eller yearly. Lad stå tomt hvis der kun er én type.</div>
+      <textarea id="variants-${i}" rows="3" placeholder="Navn, Pris, monthly/yearly&#10;Basic, 79, monthly&#10;Standard, 119, monthly">${formatVariants(e.variants)}</textarea>
+      <div class="field-hint">Én type pr. linje: Navn, Pris, monthly eller yearly. Lad stå tomt hvis der kun er én type.</div>
       <div class="entry-actions">
         <button class="btn btn-secondary" id="suggestBtn-${i}" onclick="suggestPrice(${i})">✨ Opdater pris med AI</button>
       </div>
