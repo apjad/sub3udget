@@ -26,8 +26,25 @@
     {
       "name": "Disney+",
       "domain": "disneyplus.com",
-      "price": 89.0,
-      "billingCycle": "monthly"
+      "price": 59.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Standard med reklamer",
+          "price": 59.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Standard",
+          "price": 89.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Premium",
+          "price": 119.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Max (HBO)",
