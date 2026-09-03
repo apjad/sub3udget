@@ -274,8 +274,25 @@
     {
       "name": "Xbox Game Pass",
       "domain": "xbox.com",
-      "price": 109.0,
-      "billingCycle": "monthly"
+      "price": 139.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Standard",
+          "price": 139.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "PC",
+          "price": 109.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Ultimate",
+          "price": 179.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Nintendo Switch Online",
