@@ -251,8 +251,25 @@
     {
       "name": "PlayStation Plus",
       "domain": "playstation.com",
-      "price": 79.0,
-      "billingCycle": "monthly"
+      "price": 59.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Essential",
+          "price": 59.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Extra",
+          "price": 99.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Premium",
+          "price": 139.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Xbox Game Pass",
