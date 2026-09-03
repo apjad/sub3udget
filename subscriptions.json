@@ -177,8 +177,25 @@
     {
       "name": "Apple One",
       "domain": "apple.com",
-      "price": 169.0,
-      "billingCycle": "monthly"
+      "price": 99.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Individual",
+          "price": 99.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Family",
+          "price": 149.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Premier",
+          "price": 199.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "iCloud+",
