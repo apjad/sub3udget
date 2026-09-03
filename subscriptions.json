@@ -49,8 +49,25 @@
     {
       "name": "Max (HBO)",
       "domain": "max.com",
-      "price": 89.0,
-      "billingCycle": "monthly"
+      "price": 79.0,
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Standard med reklamer",
+          "price": 79.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Standard",
+          "price": 99.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Ultimate",
+          "price": 139.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "Viaplay",
