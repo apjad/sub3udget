@@ -79,7 +79,39 @@
       "name": "TV 2 Play",
       "domain": "play.tv2.dk",
       "price": 139.0,
-      "billingCycle": "monthly"
+      "billingCycle": "monthly",
+      "variants": [
+        {
+          "label": "Basis reklamer",
+          "price": 69.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Basis u reklamer",
+          "price": 69.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Favorit m reklamer",
+          "price": 149.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Favorit u reklamer",
+          "price": 179.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Favorit Sport reklamer",
+          "price": 219.0,
+          "billingCycle": "monthly"
+        },
+        {
+          "label": "Favorit Sport u reklamer",
+          "price": 249.0,
+          "billingCycle": "monthly"
+        }
+      ]
     },
     {
       "name": "SkyShowtime",
