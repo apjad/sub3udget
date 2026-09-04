@@ -626,7 +626,7 @@
     {
       "name": "SuperGrok",
       "domain": "x.ai",
-      "price": 1.935,
+      "price": 1935.0,
       "billingCycle": "yearly"
     },
     {
