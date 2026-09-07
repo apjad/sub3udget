@@ -684,6 +684,12 @@
       "domain": "aeroweather.com",
       "price": 49.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Apple Creator Studio",
+      "domain": "apple.com",
+      "price": 149.0,
+      "billingCycle": "monthly"
     }
   ]
 }
