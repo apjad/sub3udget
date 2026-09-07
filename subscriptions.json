@@ -702,6 +702,12 @@
       "domain": "telldus.com",
       "price": 99.0,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "UAV Forecast",
+      "domain": "uavforecast.com",
+      "price": 79.0,
+      "billingCycle": "yearly"
     }
   ]
 }
