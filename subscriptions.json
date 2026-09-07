@@ -696,6 +696,12 @@
       "domain": "apple.com",
       "price": 1.188,
       "billingCycle": "yearly"
+    },
+    {
+      "name": "Telldus Live! mobile",
+      "domain": "telldus.com",
+      "price": 99.0,
+      "billingCycle": "yearly"
     }
   ]
 }
