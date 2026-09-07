@@ -678,6 +678,12 @@
       "domain": "zoom.com",
       "price": 135.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "AeroWeather Pro",
+      "domain": "aeroweather.com",
+      "price": 49.0,
+      "billingCycle": "yearly"
     }
   ]
 }
