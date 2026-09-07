@@ -690,6 +690,12 @@
       "domain": "apple.com",
       "price": 149.0,
       "billingCycle": "monthly"
+    },
+    {
+      "name": "Final Cut Pro: Create Video",
+      "domain": "apple.com",
+      "price": 1.188,
+      "billingCycle": "yearly"
     }
   ]
 }
